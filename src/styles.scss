@@ -16,3 +16,11 @@
 @import "./sass/sections/contact";
 @import "./sass/sections/hero";
 @import "./sass/sections/projects";
+
+a{
+    text-decoration:none;
+ }
+ 
+a:hover {
+    text-decoration:underline;
+}

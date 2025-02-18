@@ -62,21 +62,13 @@
           <div class="col-md-6 col-sm-12">
             <div class="about-wrapper__info load-hidden">
               <p class="about-wrapper__info-text">
-                I am a 17 years old student from Viet Nam
+                I am a <span id="tuoi"></span> years old student from Viet Nam
               </p>
               <p class="about-wrapper__info-text">
                 I like Gaming, Anime, Manga and Technology.
-                I also self-taught Japanese.
+                I also self-taught myself Japanese.
               </p>
               <span class="d-flex mt-3">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn cta-btn--resume"
-                  href="assets/resume.pdf"
-                >
-                  View Resume
-                </a>
               </span>
             </div>
           </div>
@@ -91,6 +83,42 @@
           <h2 class="section-title dark-blue-text">Interests</h2>
 
           <!-- Each .row is a project -->
+          <div class="row">
+            <div class="col-lg-4 col-sm-12">
+              <div class="project-wrapper__text load-hidden">
+                <h3 class="project-wrapper__text-title">Media</h3>
+                <div>
+                  <p class="mb-4">
+                    I enjoy watching anime, reading manga and light novel in general. I do sometimes watch movies but I am not a cinephile.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-sm-12">
+              <div class="project-wrapper__text load-hidden">
+                <h3 class="project-wrapper__text-title">Music taste</h3>
+                <div>
+                  <p class="mb-4">
+                    I like JPop but I also listen to US-UK and Vietnamese music. Favourite artists:<a href="https://yorushika.com/">Yorushika</a>, <a href="https://zutomayo.net/">Zutomayo</a>, <a href="https://www.youtube.com/@tuki.music_official">tuki.</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-sm-12">
+              <div class="project-wrapper__text load-hidden">
+                <h3 class="project-wrapper__text-title">Science</h3>
+                <div>
+                  <p class="mb-4">
+                    I am focused on Physics but I am keen on learning all fields of Science. I have a passion for Hydrometeorology, and Electrical.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-lg-4 col-sm-12">
               <div class="project-wrapper__text load-hidden">
@@ -146,7 +174,67 @@
       </div>
     </section>
     <!-- /END Contact Section -->
-
+    <script>
+      // Hàm để tính tuổi dựa trên ngày sinh
+      function tinhTuoi(ngaySinh) {
+          const ngaySinhDate = new Date(ngaySinh);
+          const ngayHienTai = new Date();
+  
+          let tuoi = ngayHienTai.getFullYear() - ngaySinhDate.getFullYear();
+          const thangHienTai = ngayHienTai.getMonth();
+          const thangNgaySinh = ngaySinhDate.getMonth();
+  
+          if (thangHienTai < thangNgaySinh || (thangHienTai === thangNgaySinh && ngayHienTai.getDate() < ngaySinhDate.getDate())) {
+              tuoi--;
+          }
+  
+          return tuoi;
+      }
+  
+      // JavaScript để cập nhật năm hiện tại
+      document.addEventListener('DOMContentLoaded', (event) => {
+          const currentYear = new Date().getFullYear(); // Lấy năm hiện tại
+          document.getElementById('currentYear').textContent = currentYear; // Cập nhật nội dung
+      });
+  
+  
+      // Ngày sinh
+      const ngaySinh = '2007-05-07'; // Định dạng ngày: YYYY-MM-DD
+  
+      // Tính tuổi và cập nhật nội dung của <div>
+      const tuoi = tinhTuoi(ngaySinh)
+  
+  
+      document.addEventListener('DOMContentLoaded', function() {
+      // Ngày sinh nhật của bạn (theo định dạng YYYY-MM-DD)
+      const birthday = '2007-07-03';
+  
+      // Hàm tính số ngày còn lại đến ngày sinh nhật
+      function calculateDaysUntilBirthday(birthday) {
+          const today = new Date();
+          let nextBirthday = new Date(birthday);
+  
+          // Đặt ngày sinh nhật cho năm hiện tại
+          nextBirthday.setFullYear(today.getFullYear());
+  
+          // Nếu sinh nhật năm nay đã qua, tính cho năm sau
+          if (today > nextBirthday) {
+              nextBirthday.setFullYear(today.getFullYear() + 1);
+          }
+  
+          // Tính số ngày còn lại
+          const timeDifference = nextBirthday - today;
+          const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+  
+          return daysRemaining;
+      }
+  
+      // Cập nhật nội dung của phần tử với số ngày còn lại
+      const daysUntilBirthday = calculateDaysUntilBirthday(birthday);
+      document.getElementById('birthday-countdown').innerHTML = `03/07/2007 (${daysUntilBirthday} days left until my birthday!)`;
+  });
+  
+  </script>
     <!-- **** Footer Section **** -->
     <footer class="footer navbar-static-bottom">
       <div class="container">
@@ -168,7 +256,7 @@
         <hr />
 
         <p class="footer__text">
-          © 2024 - Portfolio developed by
+          © <span id="currentYear"></span> - Portfolio developed by
           <a rel="noreferrer" href="https://github.com/KumaShiomi" target="_blank"
             >Kuma Shiomi</a
           >
@@ -176,7 +264,7 @@
       </div>
     </footer>
     <!-- /END Footer Section -->
-
+      
     <script defer type="module" src="index.js"></script>
   </body>
 </html>
